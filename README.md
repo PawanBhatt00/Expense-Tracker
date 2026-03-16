@@ -1,32 +1,71 @@
-# Fintrak (Designed by You)
+# FinTrak 
 
-This project is a fully working expense tracker UI built with React, TypeScript, and Vite. It includes a modern dashboard design, animated interactions, and a lightweight state management layer.
+**FinTrak** is a modern, fully functional **expense tracker** UI built with **React**, **TypeScript**, and **Vite**. It comes with a clean dashboard, smooth animations, and lightweight state management for tracking your expenses efficiently.  
 
-<!-- Optional: Customize the branding by updating `src/config.ts` -->
+> Note: You can customize branding and configurations by editing `src/config.ts`.
+
+---
+
+## 🌟 Features
+
+- **Modern Dashboard UI**: Responsive design with intuitive layout.  
+- **Expense Management**: Add, edit, and delete expenses easily.  
+- **Analytics**: Visualize expenses with graphs and charts.  
+- **Lightweight State Management**: Hooks-based state handling for smooth interactions.  
+- **Animated Components**: Interactive buttons, modals, and alerts.  
+- **Plugin Support**: Compatible with official Vite React plugins.  
+
+---
+
+## 🔌 Official Plugins
 
 Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) — uses [Babel](https://babeljs.io/) for Fast Refresh.  
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) — uses [SWC](https://swc.rs/) for Fast Refresh.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## ⚙️ Installation
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the repository**:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+git clone git@github.com:PawanBhatt00/Expense-Tracker.git
+cd Expense-Tracker
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+2. **Install dependencies:
+
+npm install
+# or
+yarn
+
+3. **📦 Project Structure
+FinTrak/
+├─ src/
+│  ├─ components/      # UI components and dashboard modules
+│  ├─ hooks/           # Custom hooks for state management
+│  ├─ lib/             # Utility functions
+│  ├─ styles/          # CSS / Tailwind files
+│  └─ config.ts        # App configurations
+├─ public/             # Static assets
+├─ package.json
+├─ tsconfig.json
+└─ vite.config.ts
+
+4. **🤝 Contributing
+
+Fork the repository.
+
+Create a new branch: git checkout -b feature/your-feature.
+
+Make your changes and commit: git commit -m "Add your feature".
+
+Push to your branch: git push origin feature/your-feature.
+
+Open a Pull Request.
+
+📜 License
+
+This project is licensed under the MIT License — see the LICENSE
+ file for details.
