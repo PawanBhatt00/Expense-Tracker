@@ -28,3 +28,6 @@ dist-ssr
 core
 
 .github/
+!.github/
+!.github/workflows/
+!.github/workflows/**
