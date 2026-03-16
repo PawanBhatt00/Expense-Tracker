@@ -1,71 +1,70 @@
-# FinTrak 
+# FinTrak 💸 — Modern Expense Tracker
 
-**FinTrak** is a modern, fully functional **expense tracker** UI built with **React**, **TypeScript**, and **Vite**. It comes with a clean dashboard, smooth animations, and lightweight state management for tracking your expenses efficiently.  
+![License](https://img.shields.io/badge/License-MIT-green) ![React](https://img.shields.io/badge/React-18-blue?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript) ![Vite](https://img.shields.io/badge/Vite-4-purple?logo=vite) ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.3-blue?logo=tailwind-css)
 
-> Note: You can customize branding and configurations by editing `src/config.ts`.
-
----
-
-## 🌟 Features
-
-- **Modern Dashboard UI**: Responsive design with intuitive layout.  
-- **Expense Management**: Add, edit, and delete expenses easily.  
-- **Analytics**: Visualize expenses with graphs and charts.  
-- **Lightweight State Management**: Hooks-based state handling for smooth interactions.  
-- **Animated Components**: Interactive buttons, modals, and alerts.  
-- **Plugin Support**: Compatible with official Vite React plugins.  
+**FinTrak** is a sleek, responsive, and fully functional **expense tracker** built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**. It helps you **track, manage, and visualize your expenses** with interactive charts, smooth animations, and a modern dashboard.  
 
 ---
 
-## 🔌 Official Plugins
+## 🌟 Key Features
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) — uses [Babel](https://babeljs.io/) for Fast Refresh.  
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) — uses [SWC](https://swc.rs/) for Fast Refresh.
+- **📊 Modern Dashboard UI** – Fully responsive, clean, and intuitive.  
+- **💰 Expense Management** – Add, edit, delete, and categorize expenses.  
+- **📈 Analytics & Charts** – Interactive graphs to track spending trends.  
+- **⚡ Lightweight State Management** – Efficient React Hooks-based handling.  
+- **🎨 Animated Components** – Smooth modals, buttons, alerts, and transitions.  
+- **🔌 Plugin Support** – Compatible with official Vite React plugins for fast refresh.  
+- **🖼️ Customizable Theme & Layout** – Tailor the dashboard to your preferences.  
 
 ---
 
-## ⚙️ Installation
+## 🚀 Live Demo
 
-1. **Clone the repository**:
+Check out **FinTrak** in action:  
+[🌐 Live Demo](https://pawanbhatt00.github.io/Expense-Tracker/)  
 
-git clone git@github.com:PawanBhatt00/Expense-Tracker.git
-cd Expense-Tracker
+---
 
+## 💻 Tech Stack
 
-2. **Install dependencies:
+- **Frontend:** React, TypeScript, Tailwind CSS  
+- **Build Tool:** Vite  
+- **State Management:** React Hooks  
+- **Charting:** [Recharts / Chart.js / ApexCharts] *(replace with actual library used)*  
+- **Icons & Animations:** Framer Motion, React Icons  
 
-npm install
-# or
-yarn
+---
 
-3. **📦 Project Structure
-FinTrak/
-├─ src/
-│  ├─ components/      # UI components and dashboard modules
-│  ├─ hooks/           # Custom hooks for state management
-│  ├─ lib/             # Utility functions
-│  ├─ styles/          # CSS / Tailwind files
-│  └─ config.ts        # App configurations
-├─ public/             # Static assets
-├─ package.json
-├─ tsconfig.json
-└─ vite.config.ts
+## 🔌 Supported Plugins
 
-4. **🤝 Contributing
+- [**@vitejs/plugin-react**](https://github.com/vitejs/vite-plugin-react) – Powered by Babel for fast refresh.  
+- [**@vitejs/plugin-react-swc**](https://github.com/vitejs/vite-plugin-react-swc) – Uses SWC for faster builds and refresh.  
 
-Fork the repository.
+---
 
-Create a new branch: git checkout -b feature/your-feature.
+## ⚙️ Installation & Setup
 
-Make your changes and commit: git commit -m "Add your feature".
+1. **Clone the repository**
 
-Push to your branch: git push origin feature/your-feature.
+```git clone git@github.com:PawanBhatt00/Expense-Tracker.git```
+```cd Expense-Tracker```
 
-Open a Pull Request.
+🤝 Contributing
 
-📜 License
+Contributions are welcome! Follow these steps:
 
-This project is licensed under the MIT License — see the LICENSE
- file for details.
+1.Fork the repository
+
+2.Create a new branch:
+
+```git checkout -b feature/your-feature```
+
+3.Make your changes and commit:
+
+```git commit -m "Add feature: your-feature"```
+
+4.Push your branch to GitHub:
+
+```git push origin feature/your-feature```
+
+5.Open a Pull Request for review
