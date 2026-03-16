@@ -1,0 +1,64 @@
+<<<<<<< HEAD
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/Expense-Tracker/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fintrak — Designed by You</title>
+  <script type="module" crossorigin src="/Expense-Tracker/assets/index-B24-cQ-m.js"></script>
+  <link rel="stylesheet" crossorigin href="/Expense-Tracker/assets/index-BdvHqlzk.css">
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense tracker</title>
+</head>
+<body class="body">
+
+    <div class="maincontainer">
+        <h1>Expense Tracker</h1>
+
+
+        <form id="expense-form" class="form-container">
+            <input type="text" placeholder="Expense name" id="expense-name" required >
+
+            <input type="number" placeholder="Amount" id="expense-amount" required>
+
+            <select id="filterCategory" class="category">
+                <option value="All">All</option>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Education">Education</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <button id="filterBtn" type="button">Filter</button>
+            <button type="submit">Add expense</button>
+        </form>
+
+        <h1>Expenses</h1>
+
+        <ul id="expense-list">
+            <!--the expenses will be added in future dynamically-->
+        </ul>
+
+        <div>
+            <h2>Total :$ <span id="total-amount">0.00</span></h2>
+        </div>    
+    </div>
+    <script src="script.js"></script>
+    
+</body>
+>>>>>>> origin/main
+</html>
