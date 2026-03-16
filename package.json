@@ -2,6 +2,7 @@
   "name": "fintrack",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://pawanbhatt00.github.io/Expense-Tracker/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
