@@ -37,13 +37,19 @@ export function ExpenseForm({
   const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
   const [errors, setErrors] = useState<FormErrors>({});
 
-  // Populate form when editing
+  // Populate form when editing or reset when switching back to add mode
   useEffect(() => {
     if (editingExpense) {
       setTitle(editingExpense.title);
       setAmount(String(editingExpense.amount));
       setCategory(editingExpense.category);
       setDate(editingExpense.date);
+      setErrors({});
+    } else {
+      setTitle("");
+      setAmount("");
+      setCategory(defaultCategory);
+      setDate(format(new Date(), "yyyy-MM-dd"));
       setErrors({});
     }
   }, [editingExpense]);
