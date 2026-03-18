@@ -6,6 +6,7 @@ import { APP_AUTHOR, THEME } from "@/config";
 import { TopNav } from "./TopNav";
 import { LeftPanel } from "./LeftPanel";
 import { RightPanel } from "./RightPanel";
+import { ExpenseFormHandle } from "./ExpenseForm";
 
 function generateId(): string {
   return `exp_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
@@ -18,6 +19,7 @@ export function Dashboard() {
   const [updatedExpenseId, setUpdatedExpenseId] = useState<string | null>(null);
   const [deletingExpenseId, setDeletingExpenseId] = useState<string | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
+  const expenseFormRef = useRef<ExpenseFormHandle | null>(null);
 
   const handleAdd = useCallback(
     (data: Omit<Expense, "id" | "createdAt">) => {
@@ -75,11 +77,13 @@ export function Dashboard() {
 
   const handleCancelEdit = useCallback(() => {
     setEditingExpense(null);
+    expenseFormRef.current?.reset();
   }, []);
 
   const handleAddClick = () => {
     setEditingExpense(null);
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    expenseFormRef.current?.submit(true);
   };
 
   return (
@@ -155,6 +159,7 @@ export function Dashboard() {
             editingExpense={editingExpense}
             onCancelEdit={handleCancelEdit}
             formRef={formRef as React.RefObject<HTMLDivElement>}
+            expenseFormRef={expenseFormRef}
           />
         </div>
 

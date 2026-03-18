@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { forwardRef, useState, useEffect, useRef, useImperativeHandle } from "react";
 import { format } from "date-fns";
 import { Check, X } from "lucide-react";
 import {
@@ -9,9 +9,15 @@ import {
   CATEGORY_COLORS,
 } from "@/types/expense";
 
+export interface ExpenseFormHandle {
+  submit: (forceAdd?: boolean) => void;
+  reset: () => void;
+}
+
 interface ExpenseFormProps {
   editingExpense?: Expense | null;
-  onSubmit: (data: Omit<Expense, "id" | "createdAt">) => void;
+  onAdd: (data: Omit<Expense, "id" | "createdAt">) => void;
+  onUpdate: (data: Omit<Expense, "id" | "createdAt">) => void;
   onCancel?: () => void;
   onFocus?: () => void;
 }
@@ -25,68 +31,78 @@ interface FormErrors {
 
 const defaultCategory: Category = "Food";
 
-export function ExpenseForm({
-  editingExpense,
-  onSubmit,
-  onCancel,
-  onFocus,
-}: ExpenseFormProps) {
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState<Category>(defaultCategory);
-  const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
-  const [errors, setErrors] = useState<FormErrors>({});
+export const ExpenseForm = forwardRef<ExpenseFormHandle, ExpenseFormProps>(
+  ({ editingExpense, onAdd, onUpdate, onCancel, onFocus }, ref) => {
+    const [title, setTitle] = useState("");
+    const [amount, setAmount] = useState("");
+    const [category, setCategory] = useState<Category>(defaultCategory);
+    const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
+    const [errors, setErrors] = useState<FormErrors>({});
+    const titleInputRef = useRef<HTMLInputElement>(null);
 
-  // Populate form when editing or reset when switching back to add mode
-  useEffect(() => {
-    if (editingExpense) {
-      setTitle(editingExpense.title);
-      setAmount(String(editingExpense.amount));
-      setCategory(editingExpense.category);
-      setDate(editingExpense.date);
-      setErrors({});
-    } else {
+    // Populate form when editing
+    useEffect(() => {
+      if (editingExpense) {
+        setTitle(editingExpense.title);
+        setAmount(String(editingExpense.amount));
+        setCategory(editingExpense.category);
+        setDate(editingExpense.date);
+        setErrors({});
+        titleInputRef.current?.focus();
+      }
+    }, [editingExpense]);
+
+    const reset = () => {
       setTitle("");
       setAmount("");
       setCategory(defaultCategory);
       setDate(format(new Date(), "yyyy-MM-dd"));
       setErrors({});
-    }
-  }, [editingExpense]);
+      titleInputRef.current?.focus();
+    };
 
-  const validate = (): boolean => {
-    const newErrors: FormErrors = {};
-    if (!title.trim()) newErrors.title = "Title is required";
-    else if (title.trim().length < 2) newErrors.title = "Too short (min 2 chars)";
-    const num = parseFloat(amount);
-    if (!amount) newErrors.amount = "Amount is required";
-    else if (isNaN(num) || num <= 0) newErrors.amount = "Enter a valid positive amount";
-    if (!category) newErrors.category = "Select a category";
-    if (!date) newErrors.date = "Date is required";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    const validate = (): boolean => {
+      const newErrors: FormErrors = {};
+      if (!title.trim()) newErrors.title = "Title is required";
+      else if (title.trim().length < 2) newErrors.title = "Too short (min 2 chars)";
+      const num = parseFloat(amount);
+      if (!amount) newErrors.amount = "Amount is required";
+      else if (isNaN(num) || num <= 0) newErrors.amount = "Enter a valid positive amount";
+      if (!category) newErrors.category = "Select a category";
+      if (!date) newErrors.date = "Date is required";
+      setErrors(newErrors);
+      return Object.keys(newErrors).length === 0;
+    };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-    onSubmit({
-      title: title.trim(),
-      amount: parseFloat(parseFloat(amount).toFixed(2)),
-      category,
-      date,
-    });
-    if (!editingExpense) {
-      // Reset after add
-      setTitle("");
-      setAmount("");
-      setCategory(defaultCategory);
-      setDate(format(new Date(), "yyyy-MM-dd"));
-      setErrors({});
-    }
-  };
+    const submit = (forceAdd = false) => {
+      if (!validate()) return;
+      const payload = {
+        title: title.trim(),
+        amount: parseFloat(parseFloat(amount).toFixed(2)),
+        category,
+        date,
+      };
 
-  const isEditing = !!editingExpense;
+      const isAdd = forceAdd || !editingExpense;
+      if (isAdd) {
+        onAdd(payload);
+        reset();
+      } else {
+        onUpdate(payload);
+      }
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      submit();
+    };
+
+    useImperativeHandle(ref, () => ({
+      submit,
+      reset,
+    }));
+
+    const isEditing = !!editingExpense;
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -99,6 +115,7 @@ export function ExpenseForm({
           Expense Title
         </label>
         <input
+          ref={titleInputRef}
           type="text"
           className="fintech-input font-space text-sm"
           placeholder="e.g. Grocery run, Netflix..."
@@ -264,7 +281,7 @@ export function ExpenseForm({
       </div>
     </form>
   );
-}
+});
 
 function hexToRgb(hex: string): string {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

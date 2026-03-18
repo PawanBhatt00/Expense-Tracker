@@ -4,6 +4,8 @@ import { Expense, Category, CATEGORIES, CATEGORY_COLORS } from "@/types/expense"
 import { ExpenseForm } from "./ExpenseForm";
 import { ExpenseListItem } from "./ExpenseListItem";
 
+import { ExpenseFormHandle } from "./ExpenseForm";
+
 interface LeftPanelProps {
   expenses: Expense[];
   newExpenseId?: string | null;
@@ -15,6 +17,7 @@ interface LeftPanelProps {
   editingExpense?: Expense | null;
   onCancelEdit: () => void;
   formRef?: React.RefObject<HTMLDivElement>;
+  expenseFormRef?: React.RefObject<ExpenseFormHandle | null>;
 }
 
 export function LeftPanel({
@@ -28,6 +31,7 @@ export function LeftPanel({
   editingExpense,
   onCancelEdit,
   formRef,
+  expenseFormRef,
 }: LeftPanelProps) {
   const [activeFilter, setActiveFilter] = useState<Category | "All">("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -67,8 +71,10 @@ export function LeftPanel({
         </div>
         <div className="glass-card rounded-xl p-4">
           <ExpenseForm
+            ref={expenseFormRef}
             editingExpense={editingExpense}
-            onSubmit={editingExpense ? (data) => onEdit({ ...editingExpense, ...data }) : onAdd}
+            onAdd={onAdd}
+            onUpdate={(data) => editingExpense && onEdit({ ...editingExpense, ...data })}
             onCancel={onCancelEdit}
           />
         </div>
